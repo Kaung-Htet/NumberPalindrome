@@ -1,12 +1,36 @@
 public class NumberPalindrome {
     public static boolean isPalindrome (int number){
+        //change negative number into positive
+        if (number < 0){
+            number *= -1;
+        }
+
+        //to reverse the original number
         int reverse = 0;
-        while (number > 0){
+
+        //to separate original number and number resulted from while loop
+        int numberCopy = number;
+
+        while (numberCopy > 0){
 
             //extract least-significant number
-            int extractor = number % 10;
-            reverse += extractor;
+            int lastDigit = numberCopy % 10;
+            reverse += lastDigit;
+            reverse *= 10;
+
+            //to iterate while loop
+            //to discard last digit in next iteration
+            numberCopy /= 10;
         }
+
+        reverse /= 10;
+//        System.out.println(reverse);
+//        System.out.println(number);
+        if (reverse == number){
+            return true;
+        }
+
+        return false;
     }
 }
 
